@@ -1,6 +1,6 @@
 <?php
 
-echo 'test';
+readfile($page['login']);
 
 /*error_reporting(E_ALL);
 session_start();
@@ -33,4 +33,4 @@ if( isset($_SESSION['login']) ){
 	if($_SESSION['login']){ $login = true; }
 }
 
-if( isset($_SESSION['login']) ){ readfile($page['home']) }else{ readfile($page['home']); }*/
+if( isset($_SESSION['login']) ){ readfile($page['home']); }else{ readfile($page['login']); }*/
