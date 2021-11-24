@@ -27,8 +27,8 @@ if( isset($_COOKIE['mgr_code']) ){
 }
 
 $login = false;
-if( isset($_SESSION('login')) ){
+if( isset($_SESSION['login']) ){
 	if($_SESSION['login']){ $login = true; }
 }
 
-if( isset($_SESSION('login')) ){ require $page['home']; }else{ require $page['login']; }
+if( isset($_SESSION['login']) ){ require $page['home']; }else{ require $page['login']; }
