@@ -4,8 +4,8 @@ error_reporting(E_ALL);
 session_start();
 
 $page = array(
-	'login' => 'file:///F:/Project/Web/mogreen/login.html',
-	'home' => 'file:///F:/Project/Web/mogreen/home.html'
+	'login' => 'login.html',
+	'home' => 'home.html'
 );
 
 $code = array('key' => 'cvmogreen18', 'hash' => password_hash('cvmogreen18', PASSWORD_DEFAULT));
