@@ -1,6 +1,6 @@
 <?php
 
-readfile($page['login']);
+readfile('login.html');
 
 /*error_reporting(E_ALL);
 session_start();
