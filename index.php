@@ -1,8 +1,6 @@
 <?php
 
-readfile('login.html');
-
-/*error_reporting(E_ALL);
+error_reporting(E_ALL);
 session_start();
 
 $page = array(
@@ -33,4 +31,4 @@ if( isset($_SESSION['login']) ){
 	if($_SESSION['login']){ $login = true; }
 }
 
-if( isset($_SESSION['login']) ){ readfile($page['home']); }else{ readfile($page['login']); }*/
+if( isset($_SESSION['login']) ){ readfile($page['home']); }else{ readfile($page['login']); }
