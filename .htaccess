@@ -1,5 +1,1 @@
 DirectoryIndex index.php
-<FilesMatch ".(css|js)$">
-Order Deny,Allow
-    Allow from all
-</FilesMatch>
