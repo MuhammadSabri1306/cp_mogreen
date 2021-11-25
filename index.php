@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mogreen</title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="vendor/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="vendor/aos/aos.min.css" rel="stylesheet">
-    <link href="vendor/progressive-image/css/progressive-image.css" rel="stylesheet">
-    <script src="vendor/progressive-image/js/progressive-image.js" defer></script>
+	<link href="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/aos/aos.min.css" rel="stylesheet">
+    <link href="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/progressive-image/css/progressive-image.css" rel="stylesheet">
+    <script src="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/progressive-image/js/progressive-image.js" defer></script>
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -91,9 +91,9 @@
 			</div>
 		</div>
 	</div></footer>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/fontawesome/js/all.min.js"></script>
-<script src="vendor/aos/aos.min.js"></script>
+<script src="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/fontawesome/js/all.min.js"></script>
+<script src="https://github.com/MuhammadSabri1306/cp_mogreen/vendor/aos/aos.min.js"></script>
 <script type="text/javascript">
 
 var Navbar = {
