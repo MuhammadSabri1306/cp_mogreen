@@ -117,7 +117,6 @@ var App = {
 App.scroll.setKey();
 Navbar.init();
 Hero.init();
-const headerHeroHeight = Hero.calcHeight(window.scrollY);
 
 if(App.orientation.isPortrait() === true){
 	document.querySelector("#about .section-hero").removeAttribute("data-aos-offset");

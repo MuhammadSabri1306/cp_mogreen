@@ -29,7 +29,7 @@
 							<h1 class="text-light hero-text">Get More <span class="text-primary">Green<i class="fas fa-leaf"></i></span></h1>
 							<h4 class="text-light font-style3 hero-text mb-5">We provide vegetable products directly from farmers hands.</h4>
 							<div class="hero-buttons d-flex">
-								<button type="button" class="btn btn-lg btn-outline-light rounded-pill">Read more <i class="fas fa-angle-down"></i></button>
+								<a href="#about" class="btn btn-lg btn-outline-light rounded-pill">Read more <i class="fas fa-angle-down"></i></a>
 							</div>
 						</div>
 					</div>
@@ -90,23 +90,24 @@
 				</div>
 			</div>
 		</section>
-		<section id="products" class="full-height d-flex align-items-center bg-white text-muted py-5">
+		<section id="products" class="full-height d-flex align-items-center bg-white">
 			<div class="container">
-				<h3 class="text-center mb-3" data-aos="fade-up">Our Products</h3>
+				<h3 class="text-center text-dark" data-aos="fade-up">Our Products</h3>
 				<div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="kubis"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="1" aria-label="wortel"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="2" aria-label="kopra"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="3" aria-label="jagung"></button>
+					</div>
 					<div class="carousel-inner">
-						<div class="carousel-indicators">
-							<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="kubis"></button>
-							<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="1" aria-label="wortel"></button>
-							<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="2" aria-label="kopra"></button>
-							<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="3" aria-label="jagung"></button>
-						</div>
 						<div class="carousel-item active">
 							<a href="file:///F:/Download/Pictures/2948381920.jpg" class="progressive replace">
 								<img src="file:///F:/Download/Pictures/2948381920.jpg" class="preview">
 							</a>
 							<div class="carousel-caption">
 								<h3>Kubis</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 							</div>
 						</div>
 						<div class="carousel-item">
@@ -115,6 +116,7 @@
 							</a>
 							<div class="carousel-caption">
 								<h3>Wortel</h3>
+								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
 							</div>
 						</div>
 						<div class="carousel-item">
@@ -123,6 +125,7 @@
 							</a>
 							<div class="carousel-caption">
 								<h3>Kopra</h3>
+								<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 							</div>
 						</div>
 						<div class="carousel-item">
@@ -131,13 +134,31 @@
 							</a>
 							<div class="carousel-caption">
 								<h3>Jagung</h3>
+								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 							</div>
 						</div>
 					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#productsCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#productsCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
-				<!-- <div class="d-flex py-3">
-					<a href="#" role="button" class=""></a>
-				</div> -->
+				<div class="row justify-content-center text-dark pt-5">
+					<div class="col-md-8 col-lg-4">
+						<h6 class="text-center">Products Certifications</h6>
+						<a href="file:///F:/Download/Pictures/Certified+Logos.jpg" class="progressive replace">
+							<img src="file:///F:/Download/Pictures/Certified+Logos.jpg" class="preview">
+						</a>
+						<p class="text-center pt-4">Detail untuk semua produk yang kami tawarkan dapat anda cek di link berikut.</p>
+						<div class="d-flex justify-content-center">
+							<a href="products.html" class="btn btn-dark rounded-0">Products Details</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	</main>
