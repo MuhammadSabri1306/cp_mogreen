@@ -66,6 +66,11 @@ h1, h2, h3, h4, h5, h6, .font-style1, .navbar-brand {
 
 .home-header .hero-buttons { justify-content: center; }
 
+main .full-height {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+
 #about .gallery {
 	display: grid;
 	grid-gap: 5px;
@@ -106,11 +111,7 @@ h1, h2, h3, h4, h5, h6, .font-style1, .navbar-brand {
 
 	.home-header .hero-buttons { justify-content: flex-start; }
 
-	main .full-height {
-		min-height: 0;
-		padding-top: 5rem;
-		padding-bottom: 5rem;
-	}
+	main .full-height { min-height: 0; }
 
 }
 
@@ -133,9 +134,7 @@ h1, h2, h3, h4, h5, h6, .font-style1, .navbar-brand {
 		object-fit: cover;
 	}
 
-	footer .footer-layout {
-		min-height: 100vh;
-	}
+	footer .footer-layout { min-height: 100vh; }
 
 }
 
