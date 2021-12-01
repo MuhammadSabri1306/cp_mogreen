@@ -39,6 +39,17 @@ h1, h2, h3, h4, h5, h6, .font-style1, .navbar-brand {
 
 .line-height-1 { line-height: 1.5em; }
 
+section#team .social { font-size: 1.5em; }
+
+section#social .social {
+	font-size: 1.5em;
+	margin: 0 .75em;
+}
+
+section#social .circle { font-size: 3em; }
+section#social .social-mail, section#social .social-fb { font-size: 1.5em; }
+section#social .social-ig { font-size: 2em; }
+
 
 
 /**
@@ -95,6 +106,20 @@ main .full-height {
 	width: 100%;
 	height: 60vh;
 	object-fit: cover;
+}
+
+section#team, section#social, .top-footer {
+	padding-top: 10em;
+	padding-bottom: 10em;
+}
+
+section#team:not(h3) {
+	font-size: .8em;
+}
+
+section#team img {
+	width: 30%;
+	border-radius: 50%;
 }
 
 @media (min-width: 539px) {
@@ -224,6 +249,20 @@ button:focus {
 }
 
 #products .carousel-indicators button:focus-visible { outline: none; }
+
+section#social .social > .circle {
+	color: var(--bs-light);
+	transition: color .3s;
+}
+
+section#social .social > div:not(.circle) {
+	color: var(--primary);
+	transition: color .3s;
+}
+
+section#social .social:hover > .circle { color: #fff; }
+
+section#social .social:hover > div:not(.circle) { color: var(--bs-dark); }
 
 
 
