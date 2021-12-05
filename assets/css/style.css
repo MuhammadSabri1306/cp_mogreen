@@ -41,14 +41,12 @@ h1, h2, h3, h4, h5, h6, .font-style1, .navbar-brand {
 
 section#team .social { font-size: 1.5em; }
 
-section#social .social {
+#social .social {
 	font-size: 1.5em;
 	margin: 0 .75em;
 }
 
-section#social .circle { font-size: 3em; }
-section#social .social-mail, section#social .social-fb { font-size: 1.5em; }
-section#social .social-ig { font-size: 2em; }
+#social .icon { font-size: 2em; }
 
 
 
@@ -108,7 +106,7 @@ main .full-height {
 	object-fit: cover;
 }
 
-section#team, section#social, .top-footer {
+section#team {
 	padding-top: 10em;
 	padding-bottom: 10em;
 }
@@ -250,19 +248,27 @@ button:focus {
 
 #products .carousel-indicators button:focus-visible { outline: none; }
 
-section#social .social > .circle {
+/*#social .social > .circle {
 	color: var(--bs-light);
 	transition: color .3s;
-}
+}*/
 
-section#social .social > div:not(.circle) {
-	color: var(--primary);
+#social .social > .icon {
+	color: #8fb099;
 	transition: color .3s;
 }
 
-section#social .social:hover > .circle { color: #fff; }
+/*#social .social:hover > .circle { color: #fff; }*/
 
-section#social .social:hover > div:not(.circle) { color: var(--bs-dark); }
+#social .social:hover > .icon { color: var(--primary); }
+
+/*#social .social > .title { color: var(--bs-dark)!important; }*/
+
+@media (min-width: 768px) {
+
+	#social .social:hover > .title { display: block; }
+
+}
 
 
 
@@ -314,6 +320,31 @@ main, footer {
 	top: 0;
 	left: 0;
 	background-image: radial-gradient(at 50% 0, transparent, #000);
+}
+
+#social .social > .title {
+    background-color: var(--primary);
+    font-size: .5em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: absolute;
+	transform: translate(-50%, -50%);
+    top: calc(100% + 10px);
+    left: 50%;
+    display: none;
+}
+
+#social .social > .title::before {
+	content: "";
+	background-color: var(--primary);
+    position: absolute;
+	transform: translate(-50%, -50%);
+    top: 0;
+    left: 50%;
+    height: 20px;
+    width: 20px;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    z-index: -1;
 }
 
 @media (min-width: 768px) {
