@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6, .font-style1, .navbar-brand {
 
 .line-height-1 { line-height: 1.5em; }
 
-section#team .social { font-size: 1.5em; }
+section#team .social { font-size: 2.5em; }
 
 #social .social {
 	font-size: 1.5em;
@@ -47,6 +47,12 @@ section#team .social { font-size: 1.5em; }
 }
 
 #social .icon { font-size: 2em; }
+
+@media (min-width: 768px) {
+
+	section#team .social { font-size: 1.5em; }
+
+}
 
 
 
@@ -248,21 +254,12 @@ button:focus {
 
 #products .carousel-indicators button:focus-visible { outline: none; }
 
-/*#social .social > .circle {
-	color: var(--bs-light);
-	transition: color .3s;
-}*/
-
 #social .social > .icon {
 	color: #8fb099;
 	transition: color .3s;
 }
 
-/*#social .social:hover > .circle { color: #fff; }*/
-
 #social .social:hover > .icon { color: var(--primary); }
-
-/*#social .social > .title { color: var(--bs-dark)!important; }*/
 
 @media (min-width: 768px) {
 
@@ -367,6 +364,15 @@ main, footer {
 	#about .section-hero.aos-animate::before {
 		top: 20px;
 		left: 20px;
+	}
+
+}
+
+@media (min-width: 992px) {
+
+	section#team .card {
+		background-color: transparent;
+		border: none;
 	}
 
 }
