@@ -180,13 +180,12 @@ button:focus {
 }
 
 .btn-primary, .navbar.navbar-light .btn {
-	color: var(--bs-light);
+	color: #fff;
 	background-color: var(--primary)!important;
     border-color: var(--primary)!important;
 }
 
 .btn-primary:hover, .navbar.navbar-light .btn:hover {
-	color: white;
 	background-color: #2f7a42!important;
     border-color: #2e733e!important;
 }
@@ -283,6 +282,11 @@ button:focus {
 	font-size: 1.5em;
 	line-height: .8em;
     margin-bottom: 0.2em;
+}
+
+.form-control:focus, .form-select:focus {
+	border-color: #4caf507a;
+	box-shadow: 0 0 0 0.25rem #4caf5021;
 }
 
 .home-header {

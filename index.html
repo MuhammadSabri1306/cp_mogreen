@@ -47,15 +47,70 @@
 				<ul class="navbar-nav ms-auto me-0">
 					<li class="nav-item px-2 px-md-0"><a class="nav-link text-end" href="#about">About</a></li>
 					<li class="nav-item px-2 px-md-0"><a class="nav-link text-end" href="#products">Products</a></li>
-					<!-- <li class="nav-item px-2 px-md-0"><a class="nav-link text-end" href="#feature">Feature</a></li> -->
 					<li class="nav-item px-2 px-md-0"><a class="nav-link text-end" href="#team">Team</a></li>
 					<li class="nav-item d-flex">
-						<button type="button" class="btn rounded-0 ms-auto ms-md-2 mb-3 mb-md-0">Contact</button>
+						<button type="button" class="btn rounded-0 ms-auto ms-md-2 mb-3 mb-md-0" data-bs-toggle="modal" data-bs-target="#modalContact">Contact</button>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<div class="modal fade" id="modalContact" tabindex="-1" aria-labelledby="modalContactLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="modalContactLabel">Contact Us</h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+					<p class="text-center text-muted">We would like to work together. Let's get in touch.</p>
+					<div class="d-flex justify-content-center align-items-center">
+						<a href="mailto:cv.mogreen@gmail.com" target="_blank" class="link-success m-2"><i class="far fa-envelope fa-2x"></i></a>
+						<a href="#" target="_blank" class="link-success m-2" style="font-size:1.5em"><i class="fas fa-phone"></i></a>
+						<a href="#" target="_blank" class="link-success m-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+						<a href="#" target="_blank" class="link-success m-2"><i class="fab fa-linkedin-in fa-2x"></i></a>
+						<a href="#" target="_blank" class="link-success m-2"><i class="fab fa-instagram fa-2x"></i></a>
+						<a href="#" target="_blank" class="link-success m-2"><i class="fab fa-facebook-f fa-2x"></i></a>
+					</div>
+					<div id="alertContact"></div>
+					<form name="contact" class="py-4" class="needs-validation">
+						<div class="mb-4">
+							<label for="contactName" class="form-label">Name</label>
+							<input type="text" name="name" id="contactName" class="form-control" placeholder="*" required>
+							<div class="invalid-feedback">Please enter your name</div>
+						</div>
+						<div class="mb-4">
+							<label for="contactEmail" class="form-label">E-Mail</label>
+							<input type="email" name="email" id="contactEmail" class="form-control" placeholder="*" required>
+							<div class="invalid-feedback">Please enter your phone number</div>
+						</div>
+						<div class="mb-4">
+							<label for="contactPhone" class="form-label">Phone Number</label>
+							<input type="tel" name="phone" id="contactPhone" class="form-control">
+						</div>
+						<div class="mb-4">
+							<label for="contactInstitution" class="form-label">Institution</label>
+							<select name="institution" id="contactInstitution" class="form-select">
+								<option value="Public" selected>Public</option>
+								<option value="Media">Media</option>
+								<option value="Investor">Investor</option>
+							</select>
+						</div>
+						<div class="mb-4">
+							<label for="contactMessege" class="form-label">Messege</label>
+							<textarea name="messege" id="contactMessege" class="form-control" rows="4" placeholder="*" required></textarea>
+							<div class="invalid-feedback">Please enter your messeges</div>
+						</div>
+						<div class="d-flex justify-content-end align-items-center px-4 py-4">
+							<button type="button" name="btnReset" class="btn btn-sm btn-outline-secondary rounded-0">Reset</button>
+							<button type="button" name="btnSubmit" class="btn btn-dark text-white rounded-0 ms-4">Send</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer"></div>
+		</div></div>
+	</div>
 	<main class="position-relative bg-light">
 		<section id="about" class="full-height d-flex align-items-center text-muted">
 			<div class="container py-lg-5">
@@ -249,7 +304,7 @@
 					<p class="font-style3">on our social media</p>
 				</div>
 				<div id="social" class="d-flex justify-content-center justify-content-md-end">
-					<a class="social position-relative" href="mailto:cv.mogreen@gmail.com" target="_blank">
+					<a class="social position-relative" href="#" target="_blank">
 						<div class="icon">
 							<i class="fab fa-linkedin"></i>
 						</div>
@@ -261,7 +316,7 @@
 						</div>
 						<div class="title bg-primary text-white"><b>@mogreen.id</b></div>
 					</a>
-					<a class="social position-relative" href="https://www.instagram.com/mogreen.id/" target="_blank" title="mogreen.id">
+					<a class="social position-relative" href="#" target="_blank" title="mogreen.id">
 						<div class="icon">
 							<i class="fab fa-facebook-square"></i>
 						</div>

@@ -86,6 +86,10 @@ var Hero = {
 	}
 };
 
+function bsAlert(parent, type, messege){
+	parent.innerHTML = `<div class="alert alert-${type} alert-dismissible mt-4" role="alert"><small>${messege}</small><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+}
+
 var App = {
 	orientation: {
 		isPortrait: () => (window.outerHeight > window.outerWidth),
@@ -129,8 +133,38 @@ if(App.breakpoint() == "sm" || App.breakpoint() == "xsm"){
 // document.addEventListener("DOMContentLoaded", function(){});
 
 document.querySelector("#navbarToggler").addEventListener("click", () => {
-
 	Navbar.toggleCollapse();
+});
+
+const contactForm = document.forms["contact"];
+
+contactForm.btnSubmit.addEventListener("click", () => {
+
+	if(!contactForm.checkValidity()){
+		contactForm.classList.add("was-validated");
+		return;
+	}
+
+	let formData = new FormData(contactForm);
+	contactForm.classList.remove("was-validated");
+	let success = false;
+
+	if(success){
+		console.log(formData);
+		bootstrap.Modal.getInstance(document.querySelector("#modalContact")).hide();
+		contactForm.messege.value = "";
+	}else{
+		let alert = document.querySelector("#alertContact");
+		bsAlert(alert, "danger", "<b>Failed</b> to send your messeges! Try other option, please.");
+		document.querySelector("#modalContact .modal-body").scrollTop = alert.offsetTop;
+	}
+
+});
+
+contactForm.btnReset.addEventListener("click", () => {
+
+	contactForm.reset();
+	contactForm.classList.remove("was-validated");
 
 });
 
