@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		.load-img{ position: relative; }
+		.load-img::after{
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: var(--bs-success);
+			display: block;
+			opacity: .9;
+			transition: opacity 1s, display 1s 1s;
+		}
+		.load-img > img {
+			width: 100%;
+			filter: blur(.25em);
+		    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+		    transition: filter 1s;
+		}
+		.load-img.loaded{ position: unset; }
+		.load-img.loaded::after{
+			/*display: none;*/
+			opacity: 0;
+		}
+		.load-img.loaded > img{ filter: blur(0); }
+	</style>
+	<style type="text/css">
+		
+		.progressive{
+			position: relative;
+			display: block;
+			overflow: hidden;
+			outline: none
+		}
+
+		.progressive img{
+			display: block;
+			width: 100%;
+			max-width: none;
+			height: auto;
+			border: 0
+		}
+
+		.progressive img.preview{
+			filter: blur(2vw);
+			transform: scale(1.05)
+		}
+
+		.progressive img.reveal{
+			position: absolute;
+			left: 0;
+			top: 0;
+			animation: progressiveReveal 1s linear
+		}
+
+		@keyframes progressiveReveal{
+			0%{
+				transform: scale(1.05);
+				opacity: 0
+			}
+			to{
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+
+	</style>
+	<script type="text/javascript" defer>
+		
+	window.addEventListener && window.addEventListener('load', function(){
+		'use strict';
+		var e = document.body;
+
+		if( e.getElementsByClassName && e.querySelector && e.classList && e.getBoundingClientRect ){
+			var t,
+				n = 'replace',
+				i = 'preview',
+				s = 'reveal',
+				r = document.getElementsByClassName('progressive ' + n),
+				o = window.requestAnimationFrame || function(e){ e() };
+			['pageshow', 'scroll', 'resize'].forEach(function(e){
+				window.addEventListener(e, a, { passive: !0 })
+			}),
+			window.MutationObserver && new MutationObserver(a).observe(e, {
+				subtree: !0,
+				childList: !0,
+				attributes:!0
+			}),
+			c()
+		}
+
+		function a(){
+			t = t || setTimeout(function(){
+				t = null,
+				c()
+			}, 300)
+		}
+
+		function c(){
+			r.length && o( function(){
+				for(var e, t, n = window.innerHeight, i=0; i<r.length;)
+					0 < (t = (e = r[i].getBoundingClientRect()).top) + e.height && n > t ? u(r[i]) : i++
+			})
+		}
+
+		function u(e, t){
+			e.classList.remove(n);
+			var r = e.getAttribute('data-href') || e.href,
+				a = e.querySelector('img.'+i);
+			if( r && a){
+				var c = new Image,
+					l = e.dataset;
+				l && ( l.srcset && (c.srcset = l.srcset), l.sizes && (c.sizes = l.sizes) ),
+				c.onload = function(){
+					r === e.href && ( e.style.cursor = 'default', e.addEventListener('click', function(e){
+						e.preventDefault()
+					}));
+					var t = c.classList;
+					c.className = a.className,
+					t.remove(i),
+					t.add(s),
+					c.alt = a.alt || '',
+					o(function(){
+						e.insertBefore(c, a.nextSibling).addEventListener('animationend',function(){
+							e.removeChild(a),
+							t.remove(s)
+						})
+					})
+				},
+				(t = 1 + (t || 0)) < 3 && (c.onerror = function(){
+					setTimeout(function(){
+						u(e, t)
+					}, 3e3*t)
+				}),
+				c.src = r
+			}
+		}
+	}, !1);
+
+	</script>
+</head>
+<body>
+	<div class="load-img" data-target="assets/img/business_card.jpg">
+		<img src="assets/img/business_card-sm.jpg" alt="mogreen's business card">
+	</div>
+	<a href="assets/img/business_card.jpg" class="progressive replace mt-md-4 mb-4">
+		<img src="assets/img/business_card-sm.jpg" class="preview img-fluid" alt="mogreen's business card">
+	</a>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+
+class LazyImg
+{
+	constructor(elm){
+		this.elm = elm;
+		this.errorCount = 0;
+		this.status = "loading";
+		this.loading();
+	}
+
+	loading(){
+		let img = new Image,
+		url = this.elm.getAttribute('data-target') || "",
+		imgSM = this.elm.querySelector("img");
+
+		img.srcset = url;
+		[...imgSM.attributes].filter(attr => attr.nodeName!="src").forEach(attr => img.setAttribute(attr.nodeName, attr.nodeValue));
+
+		img.onload = () => {
+			this.status = "loaded";
+			this.elm.insertBefore(img, imgSM.nextSibling);
+			this.elm.removeChild(imgSM);
+			this.elm.classList.add("loaded");
+		};
+
+		img.onerror = () => {
+			this.errorCount++;
+			if(this.errorCount <= 3){
+				this.status = "try";
+				setTimeout(() => { this.loading(this.elm); }, 3e3);
+			}else{
+				this.status = "error";
+			}
+		};
+	}
+}
+
+const allLoadImg = Array.from(document.querySelectorAll(".load-img")).map(elm => new LazyImg(elm));
+
+</script>
+</body>
+</html>

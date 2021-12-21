@@ -11,6 +11,21 @@
     <link href="vendor/progressive-image/css/progressive-image.css" rel="stylesheet">
     <script src="vendor/progressive-image/js/progressive-image.js" defer></script>
     <link href="assets/css/style.css?version=6" rel="stylesheet">
+
+    <script src="vendor/vue/vue.js"></script>
+    <script src="assets/js/data-products.js"></script>
+    <script type="text/javascript">
+    	
+	document.addEventListener("DOMContentLoaded", function(){
+		var productsCarousel = new Vue({
+			el: "#productsCarousel",
+			data: {
+				products: dataProduct
+			}
+		});
+	});
+
+    </script>
 </head>
 <body>
 	<header id="home" class="home-header position-relative full-height">
@@ -150,76 +165,16 @@
 				<h3 class="text-center text-dark mb-4" data-aos="fade-up">Our Products</h3>
 				<div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-indicators">
-						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="kubis"></button>
-						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="1" aria-label="wortel"></button>
-						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="2" aria-label="kopra"></button>
-						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="3" aria-label="jagung"></button>
-						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="4" aria-label="wortel"></button>
-						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="5" aria-label="kopra"></button>
-						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="6" aria-label="jagung"></button>
+						<button type="button" v-for="item in products" data-bs-target="#productsCarousel" v-bind:data-bs-slide-to="item.id" v-bind:aria-label="item.name" v-bind:class="item.id==0 ? 'active' : ''" v-bind:aria-current="item.id==0 ? 'true' : ''"></button>
 					</div>
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<a href="products/produk_brokoli.jpg" class="progressive replace">
-								<img src="products/produk_brokoli-sm.jpg" class="preview">
+						<div class="carousel-item" v-for="product in products" v-bind:class="product.id==0 ? 'active' : ''">
+							<a v-bind:href="product.img" class="progressive replace">
+								<img v-bind:src="product.imgSM" class="preview">
 							</a>
 							<div class="carousel-caption">
-								<h3>Broccoli</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<a href="products/produk_seledri.jpg" class="progressive replace">
-								<img src="products/produk_seledri-sm.jpg" class="preview">
-							</a>
-							<div class="carousel-caption">
-								<h3>Celery</h3>
-								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<a href="products/produk_wortel.jpg" class="progressive replace">
-								<img src="products/produk_wortel-sm.jpg" class="preview">
-							</a>
-							<div class="carousel-caption">
-								<h3>Carrot</h3>
-								<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<a href="products/produk_tomat.jpg" class="progressive replace">
-								<img src="products/produk_tomat-sm.jpg" class="preview">
-							</a>
-							<div class="carousel-caption">
-								<h3>Tomatoes</h3>
-								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<a href="products/produk_cabai.jpg" class="progressive replace">
-								<img src="products/produk_cabai-sm.jpg" class="preview">
-							</a>
-							<div class="carousel-caption">
-								<h3>Chili</h3>
-								<p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<a href="products/produk_kentang.jpg" class="progressive replace">
-								<img src="products/produk_kentang-sm.jpg" class="preview">
-							</a>
-							<div class="carousel-caption">
-								<h3>Potato</h3>
-								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<a href="products/produk_kol.jpg" class="progressive replace">
-								<img src="products/produk_kol-sm.jpg" class="preview">
-							</a>
-							<div class="carousel-caption">
-								<h3>Cauliflower</h3>
-								<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+								<h3>{{product.name}}</h3>
+								<p>{{product.description}}</p>
 							</div>
 						</div>
 					</div>
@@ -332,10 +287,82 @@
 		</div>
 		<p class="text-muted text-center small mb-0 py-3"><b>Copyright <i class="far fa-copyright"></i> 2021 MOGREEN<span class="d-none d-md-inline">. All rights reserved</span></b></p>
 	</div></footer>
+
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="vendor/fontawesome/js/all.min.js"></script>
 <script src="vendor/aos/aos.min.js"></script>
-<script src="assets/js/script.js?version=4"></script>
+<script src="assets/js/script.js?version=5"></script>
+<script type="text/javascript">
+
+App.scroll.setKey();
+Navbar.init();
+Hero.init();
+
+if(App.orientation.isPortrait() === true){
+	document.querySelector("#about .section-hero").removeAttribute("data-aos-offset");
+}
+
+if(App.breakpoint() == "sm" || App.breakpoint() == "xsm"){
+	document.querySelectorAll("#about .gallery-item").forEach(item => item.removeAttribute("data-aos"));
+}
+
+// document.addEventListener("DOMContentLoaded", function(){});
+
+document.querySelector("#navbarToggler").addEventListener("click", () => {
+	Navbar.toggleCollapse();
+});
+
+const contactForm = document.forms["contact"];
+
+contactForm.btnSubmit.addEventListener("click", () => {
+
+	if(!contactForm.checkValidity()){
+		contactForm.classList.add("was-validated");
+		return;
+	}
+
+	let formData = new FormData(contactForm);
+	contactForm.classList.remove("was-validated");
+	let success = false;
+
+	if(success){
+		console.log(formData);
+		bootstrap.Modal.getInstance(document.querySelector("#modalContact")).hide();
+		contactForm.messege.value = "";
+	}else{
+		let alert = document.querySelector("#alertContact");
+		bsAlert(alert, "danger", "<b>Failed</b> to send your messeges! Try other option, please.");
+		document.querySelector("#modalContact .modal-body").scrollTop = alert.offsetTop;
+	}
+
+});
+
+contactForm.btnReset.addEventListener("click", () => {
+
+	contactForm.reset();
+	contactForm.classList.remove("was-validated");
+
+});
+
+window.onscroll = () => {
+
+	Hero.setHeight();
+	Navbar.scrolledStyle();
+
+	App.scroll.setKey();
+
+};
+
+var headerHeroTimer = setInterval(headerHeroChecker, 500);
+function headerHeroChecker(){
+	if(!document.querySelector("#home .progressive > img").classList.contains("preview")){
+		clearInterval(headerHeroTimer);
+		Hero.init();
+	}
+}
+
+AOS.init();
+
+</script>
 </body>
 </html>

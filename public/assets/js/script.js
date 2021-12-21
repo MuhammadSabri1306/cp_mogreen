@@ -118,71 +118,20 @@ var App = {
 	}
 };
 
-App.scroll.setKey();
-Navbar.init();
-Hero.init();
+const createElm = obj => {
+	if(!obj.hasOwnProperty("tag")) return null;
 
-if(App.orientation.isPortrait() === true){
-	document.querySelector("#about .section-hero").removeAttribute("data-aos-offset");
-}
-
-if(App.breakpoint() == "sm" || App.breakpoint() == "xsm"){
-	document.querySelectorAll("#about .gallery-item").forEach(item => item.removeAttribute("data-aos"));
-}
-
-// document.addEventListener("DOMContentLoaded", function(){});
-
-document.querySelector("#navbarToggler").addEventListener("click", () => {
-	Navbar.toggleCollapse();
-});
-
-const contactForm = document.forms["contact"];
-
-contactForm.btnSubmit.addEventListener("click", () => {
-
-	if(!contactForm.checkValidity()){
-		contactForm.classList.add("was-validated");
-		return;
+	let elm = document.createElement(obj.tag);
+	if(obj.hasOwnProperty("class")){
+		if(Array.isArray(obj.class)) obj.class.forEach(className => elm.classList.add(className));
+		else if(typeof obj.class == "string") elm.classList.add(obj.class);
+	}
+	if(obj.hasOwnProperty("id")) elm.id = obj.id;
+	if(obj.hasOwnProperty("attr")) Object.entries(obj.attr).forEach(attr => elm.setAttribute(attr[0], attr[1]));
+	if(obj.hasOwnProperty("text")) elm.innerText = obj.text;
+	if(obj.hasOwnProperty("child")){
+		obj.child.forEach(child => elm.appendChild(createElm(child)));
 	}
 
-	let formData = new FormData(contactForm);
-	contactForm.classList.remove("was-validated");
-	let success = false;
-
-	if(success){
-		console.log(formData);
-		bootstrap.Modal.getInstance(document.querySelector("#modalContact")).hide();
-		contactForm.messege.value = "";
-	}else{
-		let alert = document.querySelector("#alertContact");
-		bsAlert(alert, "danger", "<b>Failed</b> to send your messeges! Try other option, please.");
-		document.querySelector("#modalContact .modal-body").scrollTop = alert.offsetTop;
-	}
-
-});
-
-contactForm.btnReset.addEventListener("click", () => {
-
-	contactForm.reset();
-	contactForm.classList.remove("was-validated");
-
-});
-
-window.onscroll = () => {
-
-	Hero.setHeight();
-	Navbar.scrolledStyle();
-
-	App.scroll.setKey();
-
+	return elm;
 };
-
-var headerHeroTimer = setInterval(headerHeroChecker, 500);
-function headerHeroChecker(){
-	if(!document.querySelector("#home .progressive > img").classList.contains("preview")){
-		clearInterval(headerHeroTimer);
-		Hero.init();
-	}
-}
-
-AOS.init();

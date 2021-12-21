@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mogreen</title>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="vendor/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="vendor/progressive-image/css/progressive-image.css" rel="stylesheet">
+    <script src="vendor/progressive-image/js/progressive-image.js" defer></script>
+    <link href="assets/css/style.css?version=6" rel="stylesheet">
+
+    <script src="assets/js/data-product.js"></script>
+    <script src="vendor/vue/vue.js"></script>
+</head>
+<body>
+	<main class="position-relative bg-light">
+		<section id="products" class="full-height d-flex align-items-center bg-white">
+			<div class="container">
+				<h3 class="text-center text-dark mb-4" data-aos="fade-up">Our Products</h3>
+				<div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" v-for="item in products" data-bs-target="#productsCarousel" v-bind:data-bs-slide-to="item.id" v-bind:aria-label="item.name" v-bind:class="item.id==0 ? 'active' : ''" v-bind:aria-current="item.id==0 ? 'true' : ''"></button>
+						<!-- <button type="button" data-v-loop="" data-bs-target="#productsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="kubis"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="1" aria-label="wortel"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="2" aria-label="kopra"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="3" aria-label="jagung"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="4" aria-label="wortel"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="5" aria-label="kopra"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="6" aria-label="jagung"></button> -->
+					</div>
+					<div class="carousel-inner">
+						<div class="carousel-item" v-for="product in products" v-bind:class="product.id==0 ? 'active' : ''">
+							<a v-bind:href="product.img" class="progressive replace">
+								<img v-bind:src="product.imgSM" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>{{product.name}}</h3>
+								<p>{{product.description}}</p>
+							</div>
+						</div>
+						<!-- <div class="carousel-item active">
+							<a href="products/produk_brokoli.jpg" class="progressive replace">
+								<img src="products/produk_brokoli-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Broccoli</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<a href="products/produk_seledri.jpg" class="progressive replace">
+								<img src="products/produk_seledri-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Celery</h3>
+								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<a href="products/produk_wortel.jpg" class="progressive replace">
+								<img src="products/produk_wortel-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Carrot</h3>
+								<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<a href="products/produk_tomat.jpg" class="progressive replace">
+								<img src="products/produk_tomat-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Tomatoes</h3>
+								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<a href="products/produk_cabai.jpg" class="progressive replace">
+								<img src="products/produk_cabai-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Chili</h3>
+								<p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<a href="products/produk_kentang.jpg" class="progressive replace">
+								<img src="products/produk_kentang-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Potato</h3>
+								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<a href="products/produk_kol.jpg" class="progressive replace">
+								<img src="products/produk_kol-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Cauliflower</h3>
+								<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							</div>
+						</div> -->
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#productsCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#productsCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+				<div class="row justify-content-center text-dark pt-5">
+					<div class="col-md-8 col-lg-4">
+						<h6 class="text-center" data-aos="fade-up">Products Certifications</h6>
+						<a href="assets/img/certificate.jpg" class="progressive replace">
+							<img src="assets/img/certificate-sm.jpg" class="preview">
+						</a>
+						<p class="text-center pt-4" data-aos="fade-up">Detail untuk semua produk yang kami tawarkan dapat anda cek di link berikut.</p>
+						<div class="d-flex justify-content-center">
+							<a href="products.html" class="btn btn-dark rounded-0" data-aos="fade-up">Details</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/fontawesome/js/all.min.js"></script>
+<!-- <script src="assets/js/script.js?version=5"></script> -->
+<script type="text/javascript">
+
+var productsCarousel = new Vue({
+	el: "#productsCarousel",
+	data: {
+		products: dataProduct
+	}
+});
+
+// document.addEventListener("DOMContentLoaded", function(){});
+
+</script>
+</body>
+</html>
