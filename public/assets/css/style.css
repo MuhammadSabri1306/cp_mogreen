@@ -275,13 +275,22 @@ button:focus {
   */
 
 .navbar {
-	transition: background-color .3s;
+	transition: background-color .3s, padding .3s;
+}
+
+.navbar-dark {
+	padding: 3em 0;
 }
 
 .navbar-brand {
 	font-size: 1.5em;
 	line-height: .8em;
     margin-bottom: 0.2em;
+    transition: font-size .3s;
+}
+
+.navbar-dark .navbar-brand {
+	font-size: 2em;
 }
 
 .form-control:focus, .form-select:focus {

@@ -5,33 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mogreen</title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="vendor/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="vendor/aos/aos.min.css" rel="stylesheet">
+
     <link href="vendor/progressive-image/css/progressive-image.css" rel="stylesheet">
     <script src="vendor/progressive-image/js/progressive-image.js" defer></script>
+
     <link href="assets/css/style.css?version=6" rel="stylesheet">
-
-    <script src="vendor/vue/vue.js"></script>
-    <script src="assets/js/data-products.js"></script>
-    <script type="text/javascript">
-    	
-	document.addEventListener("DOMContentLoaded", function(){
-		var productsCarousel = new Vue({
-			el: "#productsCarousel",
-			data: {
-				products: dataProduct
-			}
-		});
-	});
-
-    </script>
 </head>
 <body>
 	<header id="home" class="home-header position-relative full-height">
 		<div class="position-fixed top-0 left-0">
-			<a href="assets/img/hero1-e1-compressed.jpg" class="hero progressive replace">
-				<img src="assets/img/hero1-e1-sm-compressed.jpg" class="preview" alt="vegetable's farm">
+			<a href="file:///F:/download/mogreen/20211218_120456.jpg" class="hero progressive replace">
+				<img src="file:///F:/download/mogreen/20211218_120456.jpg" class="preview" alt="vegetable's farm">
 			</a>
 		</div>
 		<div class="hero-gradient">&nbsp;</div>
@@ -145,17 +133,20 @@
 					</div>
 				</div>
 				<h5 class="text-center font-style3 line-height-1 px-lg-5 py-4" data-aos="fade-up">Produk kami berasal langsung dari para petani di <b>Malino</b>, sebuah daerah dataran tinggi di Sulawesi Selatan, timur Indonesia. Malino sendiri sudah menjadi suplier buah dan sayuran bagi daerah lokal seperti Makassar, Gowa dan masih banyak lagi. Kini anda bisa ikut menikmati kesegaran tersebut.</h5>
-				<div class="image-gallery">
+				<div class="image-gallery" id="gallery">
 					<div class="gallery">
-						<a href="assets/img/gallery3.jpg" class="progressive replace gallery-item" data-aos="zoom-in">
-							<img src="assets/img/gallery3-sm.jpg" class="preview">
+						<a href="file:///F:/download/mogreen/20211218_120233.jpg" class="progressive replace gallery-item" data-aos="zoom-in">
+							<img src="file:///F:/download/mogreen/20211218_120233.jpg" class="preview">
 						</a>
-						<a href="assets/img/gallery2.jpg" class="progressive replace gallery-item" data-aos="zoom-in">
-							<img src="assets/img/gallery2-sm.jpg" class="preview">
+						<a href="file:///F:/download/mogreen/20211218_133047.jpg" class="progressive replace gallery-item" data-aos="zoom-in">
+							<img src="file:///F:/download/mogreen/20211218_133047.jpg" class="preview">
 						</a>
-						<a href="assets/img/gallery1.jpg" class="progressive replace gallery-item" data-aos="zoom-in" data-aos-offset="200">
-							<img src="assets/img/gallery1-sm.jpg" class="preview">
+						<a href="file:///F:/download/mogreen/20211218_120731.jpg" class="progressive replace gallery-item" data-aos="zoom-in" data-aos-offset="200">
+							<img src="file:///F:/download/mogreen/20211218_120731.jpg" class="preview">
 						</a>
+						<!-- <a v-for="img in img.gallery" v-bind:href="img.lg" class="progressive replace gallery-item" data-aos="zoom-in">
+							<img v-bind:src="img.sm" class="preview">
+						</a> -->
 					</div>
 				</div>
 			</div>
@@ -163,7 +154,7 @@
 		<section id="products" class="full-height d-flex align-items-center bg-white">
 			<div class="container">
 				<h3 class="text-center text-dark mb-4" data-aos="fade-up">Our Products</h3>
-				<div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
+				<!-- <div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-indicators">
 						<button type="button" v-for="item in products" data-bs-target="#productsCarousel" v-bind:data-bs-slide-to="item.id" v-bind:aria-label="item.name" v-bind:class="item.id==0 ? 'active' : ''" v-bind:aria-current="item.id==0 ? 'true' : ''"></button>
 					</div>
@@ -186,8 +177,8 @@
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
-				</div>
-				<div class="row justify-content-center text-dark pt-5">
+				</div> -->
+				<!-- <div class="row justify-content-center text-dark pt-5">
 					<div class="col-md-8 col-lg-4">
 						<h6 class="text-center" data-aos="fade-up">Products Certifications</h6>
 						<a href="assets/img/certificate.jpg" class="progressive replace">
@@ -199,7 +190,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</section>
 		<section id="team" class="bg-light text-muted">
 			<div class="container">
@@ -287,7 +278,7 @@
 		</div>
 		<p class="text-muted text-center small mb-0 py-3"><b>Copyright <i class="far fa-copyright"></i> 2021 MOGREEN<span class="d-none d-md-inline">. All rights reserved</span></b></p>
 	</div></footer>
-
+</div>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="vendor/fontawesome/js/all.min.js"></script>
 <script src="vendor/aos/aos.min.js"></script>
