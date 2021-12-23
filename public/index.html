@@ -117,22 +117,7 @@
 	<main class="position-relative bg-light">
 		<section id="about" class="full-height d-flex align-items-center text-muted">
 			<div class="container py-lg-5">
-				<div class="row flex-md-row-reverse mb-5">
-					<div class="col-md col-lg-5">
-						<div class="ps-md-5">
-							<h3 class="mb-3" data-aos="fade-up">About Us</h3>
-							<p class="ps-3" data-aos="fade-up"><b>Mogreen</b> adalah perusahaan asal Indonesia yang menjadi supplier untuk memenuhi permintaan akan produk-produk sayuran. Dikenal sebagai zamrud khatulistiwa karena kaya akan sumber daya alam, Indonesia menjadi negara penghasil produk pertanian yang telah dikenal dunia.</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="section-hero" data-aos="fade-up" data-aos-offset="200">
-							<a href="assets/img/business_card.jpg" class="progressive replace mt-md-4 mb-4">
-								<img src="assets/img/business_card-sm.jpg" class="preview img-fluid" alt="mogreen's business card">
-							</a>
-						</div>
-					</div>
-				</div>
-				<h5 class="text-center font-style3 line-height-1 px-lg-5 py-4" data-aos="fade-up">Produk kami berasal langsung dari para petani di <b>Malino</b>, sebuah daerah dataran tinggi di Sulawesi Selatan, timur Indonesia. Malino sendiri sudah menjadi suplier buah dan sayuran bagi daerah lokal seperti Makassar, Gowa dan masih banyak lagi. Kini anda bisa ikut menikmati kesegaran tersebut.</h5>
+				<h5 class="text-center font-style3 line-height-1 px-lg-5 py-4 pb-lg-5" data-aos="fade-up"><b>Mogreen</b> adalah perusahaan asal <b>Indonesia</b> yang menjadi supplier untuk memenuhi permintaan akan produk-produk <b>sayuran</b>. Kami mengelola sekitar <b>3000 hektar</b> lahan pertanian dan bekerja sama dengan lebih dari <b>100 petani</b> lokal di Malino, Sulawesi Selatan. Hasil panen di Malino dapat mencapai hingga <b>100 ton per harinya</b> dan telah menjadi daerah penyuplai kebutuhan sayuran di Sulawesi Selatan sampai tingkat nasional.</h5>
 				<div class="image-gallery" id="gallery">
 					<div class="gallery">
 						<a href="file:///F:/download/mogreen/20211218_120233.jpg" class="progressive replace gallery-item" data-aos="zoom-in">
@@ -144,9 +129,6 @@
 						<a href="file:///F:/download/mogreen/20211218_120731.jpg" class="progressive replace gallery-item" data-aos="zoom-in" data-aos-offset="200">
 							<img src="file:///F:/download/mogreen/20211218_120731.jpg" class="preview">
 						</a>
-						<!-- <a v-for="img in img.gallery" v-bind:href="img.lg" class="progressive replace gallery-item" data-aos="zoom-in">
-							<img v-bind:src="img.sm" class="preview">
-						</a> -->
 					</div>
 				</div>
 			</div>
@@ -154,18 +136,28 @@
 		<section id="products" class="full-height d-flex align-items-center bg-white">
 			<div class="container">
 				<h3 class="text-center text-dark mb-4" data-aos="fade-up">Our Products</h3>
-				<!-- <div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-indicators">
-						<button type="button" v-for="item in products" data-bs-target="#productsCarousel" v-bind:data-bs-slide-to="item.id" v-bind:aria-label="item.name" v-bind:class="item.id==0 ? 'active' : ''" v-bind:aria-current="item.id==0 ? 'true' : ''"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="0" aria-label="potato" class="active" aria-current="true"></button>
+						<button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="1" aria-label="potato"></button>
 					</div>
 					<div class="carousel-inner">
-						<div class="carousel-item" v-for="product in products" v-bind:class="product.id==0 ? 'active' : ''">
-							<a v-bind:href="product.img" class="progressive replace">
-								<img v-bind:src="product.imgSM" class="preview">
+						<div class="carousel-item active">
+							<a href="F:/Project/Web/mogreen/public/products/produk_kentang.jpg" class="progressive replace">
+								<img src="F:/Project/Web/mogreen/public/products/produk_kentang-sm.jpg" class="preview">
 							</a>
 							<div class="carousel-caption">
-								<h3>{{product.name}}</h3>
-								<p>{{product.description}}</p>
+								<h3>Potato</h3>
+								<p>Kami menyediakan kentang khusus jenis granola dikarenakan kandungan pati yang rendah (16% - 18%) dan ketahanan yang tinggi terhadap penyakit tanaman, seperti busuk daun dan layu bakteri.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<a href="F:/Project/Web/mogreen/public/products/produk_wortel.jpg" class="progressive replace">
+								<img src="F:/Project/Web/mogreen/public/products/produk_wortel-sm.jpg" class="preview">
+							</a>
+							<div class="carousel-caption">
+								<h3>Carrot</h3>
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam facilis, eligendi consequuntur numquam? Sit nemo ut est, aspernatur tempore. Consectetur eligendi alias dicta eaque blanditiis?</p>
 							</div>
 						</div>
 					</div>
@@ -177,7 +169,7 @@
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
-				</div> -->
+				</div>
 				<!-- <div class="row justify-content-center text-dark pt-5">
 					<div class="col-md-8 col-lg-4">
 						<h6 class="text-center" data-aos="fade-up">Products Certifications</h6>

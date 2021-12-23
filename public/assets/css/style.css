@@ -39,10 +39,10 @@ h1, h2, h3, h4, h5, h6, .font-style1, .navbar-brand {
 
 .line-height-1 { line-height: 1.5em; }
 
-section#team .social { font-size: 2.5em; }
+section#team .social { font-size: 2em; }
 
 #social .social {
-	font-size: 1.5em;
+	font-size: 1.2em;
 	margin: 0 .75em;
 }
 
