@@ -21,20 +21,18 @@
 	--light-rgb: 248, 249, 250;
 	--dark-rgb: 33, 37, 41;
 
-	--bs-breakpoint-sm: 576px;
-	--bs-breakpoint-md: 768px;
-	--bs-breakpoint-lg: 992px;
-	--bs-breakpoint-xl: 1200px;
-	--bs-breakpoint-xxl: 1400px;
-
 	--bs-container-w-sm: 540px;
 	--bs-container-w-md: 720px;
 	--bs-container-w-lg: 960px;
 	--bs-container-w-xl: 1140px;
 	--bs-container-w-xxl: 1320px;
 
-	--gallery-w-sm: var(--bs-container-w-sm) - 1.5rem;
-	--gallery-w-lg: var(--bs-container-w-lg) - 1.5rem;;
+	--gallery-w-xsm: (100vw - 1.5rem);
+	--gallery-w-sm: (var(--bs-container-w-sm) - 1.5rem);
+	--gallery-w-md: (var(--bs-container-w-md) - 1.5rem);
+	--gallery-w-lg: (var(--bs-container-w-lg) - 1.5rem);
+	--gallery-w-xl: (var(--bs-container-w-xl) - 1.5rem);
+	--gallery-w-xxl: (var(--bs-container-w-xxl) - 1.5rem);
 }
 
 .bg-primary { background-color: var(--primary)!important; }
@@ -120,14 +118,62 @@ main .full-height {
 }
 
 #about .gallery-item {
-	width: calc(var(--gallery-w-sm) / 2);
-	height: calc(var(--gallery-w-sm) / 2);
+	width: calc(var(--gallery-w-xsm) / 2 - 5px);
+	height: calc(var(--gallery-w-xsm) / 2 - 5px);
 }
 
 #about .gallery-item img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+}
+
+@media (min-width: 576px) {
+	#about .gallery-item {
+		width: calc(var(--gallery-w-sm) / 2 - 5px);
+		height: calc(var(--gallery-w-sm) / 2 - 5px);
+	}
+}
+
+@media (min-width: 768px) {
+	#about .gallery {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	#about .gallery-item {
+		width: calc(var(--gallery-w-md) / 3 - 5px);
+		height: calc(var(--gallery-w-md) / 3 - 5px);
+	}
+}
+
+@media (min-width: 992px) {
+	#about .gallery {
+		grid-gap: 0;
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	#about .gallery-item {
+		width: calc(var(--gallery-w-lg) / 3);
+		height: calc(var(--gallery-w-lg) / 3);
+	}
+}
+
+@media (min-width: 1200px) {
+	#about .gallery-item {
+		width: calc(var(--gallery-w-xl) / 3);
+		height: calc(var(--gallery-w-xl) / 3);
+	}
+}
+
+@media (min-width: 1400px) {
+	#about .gallery {
+		grid-gap: 10px;
+	}
+
+	#about .gallery-item {
+		width: calc(var(--gallery-w-xxl) / 3 - 10px);
+		height: calc(var(--gallery-w-xxl) / 3 - 10px);
+	}
 }
 
 #productsCarousel img {
@@ -172,15 +218,6 @@ section#team img {
 @media (min-width: 992px) {
 
 	main .full-height { min-height: 100vh; }
-
-	#about .gallery {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	#about .gallery-item {
-		width: calc((var(--gallery-w-lg)) / 3);
-		height: calc((var(--gallery-w-lg)) / 3);
-	}
 
 	#productsCarousel img {
 		display: block;
