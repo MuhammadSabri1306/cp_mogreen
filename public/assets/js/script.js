@@ -65,7 +65,7 @@ var Navbar = {
 
 var Hero = {
 	// elms: () => document.querySelectorAll("#home, #home .hero-gradient, #home .progressive > img"),
-	elm: () => document.querySelector("#home .progressive > img"),
+	elm: () => document.querySelector("#home .hero > img"),
 	init: function(){
 		let height = this.calcHeight(window.scrollY);
 
