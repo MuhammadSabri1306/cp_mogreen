@@ -9,7 +9,7 @@
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="vendor/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="vendor/aos/aos.min.css" rel="stylesheet">
-    <link href="assets/css/style.css?version=6" rel="stylesheet">
+    <link href="assets/css/style.css?version=7" rel="stylesheet">
 </head>
 <body>
 	<header id="home" class="home-header position-relative full-height">
@@ -270,85 +270,34 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="vendor/fontawesome/js/all.min.js"></script>
 <script src="vendor/aos/aos.min.js"></script>
-<script src="assets/js/script.js?version=5"></script>
+<script src="assets/js/script.js?version=6"></script>
 <script type="text/javascript">
 
-console.log(window.innerWidth);
-
-function createImg(target){
-	let img = new Image;
-	img.src = target.getAttribute("data-target");
-
-	[...target.attributes].filter(attr => (attr.nodeName!="src" && attr.nodeName!="src")).forEach(attr => img.setAttribute(attr.nodeName, attr.nodeValue));
-	
-	return img;
-}
-
-function loadImg(target, order = false){
-	if(!Array.isArray(target)){
-
-		let img = createImg(target);
-		img.onload = function(){
-			if(target.hasAttribute("data-loaded")) img.setAttribute("data-loaded", true);
-			target.parentNode.replaceChild(img, target);
-		};
-
-	}else if(target.length > 0 && order === true){
-
-		let img = createImg(target[0]);
-		img.onload = function(){
-			if(target[0].hasAttribute("data-loaded")) img.setAttribute("data-loaded", true);
-			target[0].parentNode.replaceChild(img, target[0]);
-			
-			if(target.length > 1){
-				target.shift();
-				loadImg(target, true);
-			}
-		};
-
-	}else if(target.length > 0){
-		target.forEach(t => {
-
-			let img = createImg(t);
-			img.onload = function(){
-				if(t.hasAttribute("data-loaded")) img.setAttribute("data-loaded", true);
-				t.parentNode.replaceChild(img, t);
-			};
-
-		});
-	}
-}
-
-const headerElm = document.querySelector("header#home");
-
-if(window.scrollY <= (headerElm.offsetTop + headerElm.offsetHeight)){
-	loadImg([...document.querySelectorAll("img[data-target]")], true);
-}else{
-	loadImg([...document.querySelectorAll("img[data-target]")], false);
-}
-
-
-
-
-App.scroll.setKey();
+var scrollWatcher = createScrollWatcher();
 Navbar.init();
 Hero.init();
 
-/*if(App.orientation.isPortrait() === true){
-	document.querySelector("#about .section-hero").removeAttribute("data-aos-offset");
-}*/
+const navbarToggler = document.querySelector("#navbarToggler")
+const contactForm = document.forms["contact"];
+const modalContact = document.querySelector("#modalContact");
+const alertContact = document.querySelector("#alertContact");
+const galleryItem = document.querySelectorAll("#about .gallery-item");
 
-if(App.breakpoint() == "sm" || App.breakpoint() == "xsm"){
-	document.querySelectorAll("#about .gallery-item").forEach(item => item.removeAttribute("data-aos"));
+const imgList = lazyLoadImgAnalyzerForHomePage();
+loadImg(imgList);
+
+if(getBsBreakpoint() == "sm" || getBsBreakpoint() == "xsm"){
+	galleryItem.forEach(item => item.removeAttribute("data-aos"));
 }
 
-// document.addEventListener("DOMContentLoaded", function(){});
+/*if(App.orientation.isPortrait() === true){
+	document.querySelector("#about .section-hero").removeAttribute("data-aos-offset");
+}
+document.addEventListener("DOMContentLoaded", function(){});*/
 
-document.querySelector("#navbarToggler").addEventListener("click", () => {
+navbarToggler.addEventListener("click", () => {
 	Navbar.toggleCollapse();
 });
-
-const contactForm = document.forms["contact"];
 
 contactForm.btnSubmit.addEventListener("click", () => {
 
@@ -363,12 +312,11 @@ contactForm.btnSubmit.addEventListener("click", () => {
 
 	if(success){
 		console.log(formData);
-		bootstrap.Modal.getInstance(document.querySelector("#modalContact")).hide();
+		bootstrap.Modal.getInstance(modalContact).hide();
 		contactForm.messege.value = "";
 	}else{
-		let alert = document.querySelector("#alertContact");
-		bsAlert(alert, "danger", "<b>Failed</b> to send your messeges! Try other option, please.");
-		document.querySelector("#modalContact .modal-body").scrollTop = alert.offsetTop;
+		bsAlert(alertContact, "danger", "<b>Failed</b> to send your messeges! Try other option, please.");
+		document.querySelector("#modalContact .modal-body").scrollTop = alertContact.offsetTop;
 	}
 
 });
@@ -385,13 +333,13 @@ window.onscroll = () => {
 	Hero.setHeight();
 	Navbar.scrolledStyle();
 
-	App.scroll.setKey();
+	scrollWatcher.setKey();
 
 };
 
 var headerHeroTimer = setInterval(headerHeroChecker, 500);
 function headerHeroChecker(){
-	if(!document.querySelector("#home .hero > img").getAttribute("data-loade") === "true"){
+	if(!document.querySelector("#home .hero > img").getAttribute("data-loaded") === "true"){
 		clearInterval(headerHeroTimer);
 		Hero.init();
 	}

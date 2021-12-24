@@ -16,7 +16,7 @@ var Navbar = {
 		if(this.config.isLight) this.toLight();
 	},
 	mustLight: function(){
-		// const offset = App.getSize("header#home").height - App.getSize(this.elm).height;
+		// const offset = getElmSize("header#home").height - getElmSize(this.elm).height;
 		const offset = 50;
 		return (window.scrollY > offset);
 	},
@@ -64,7 +64,6 @@ var Navbar = {
 };
 
 var Hero = {
-	// elms: () => document.querySelectorAll("#home, #home .hero-gradient, #home .progressive > img"),
 	elm: () => document.querySelector("#home .hero > img"),
 	init: function(){
 		let height = this.calcHeight(window.scrollY);
@@ -73,7 +72,7 @@ var Hero = {
 		else this.stylingHeight(0);
 	},
 	calcHeight: function(key){
-		return 100 - (key * 100 / App.getSize("#home").height);
+		return 100 - (key * 100 / getElmSize("#home").height);
 	},
 	setHeight: function(){
 		let height = this.calcHeight(window.scrollY);
@@ -90,48 +89,141 @@ function bsAlert(parent, type, messege){
 	parent.innerHTML = `<div class="alert alert-${type} alert-dismissible mt-4" role="alert"><small>${messege}</small><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
 }
 
-var App = {
-	orientation: {
-		isPortrait: () => (window.outerHeight > window.outerWidth),
-		isLandscape: () => (window.outerWidth > window.outerHeight)
-	},
-	breakpoint: () => {
-		if(window.outerWidth >= 1400) return "xxl";
-		else if(window.outerWidth >= 1200) return "xl";
-		else if(window.outerWidth >= 992) return "lg";
-		else if(window.outerWidth >= 768) return "md";
-		else if(window.outerWidth >= 576) return "sm";
-		else return "xsm";
-	},
-	getSize: selector => {
-		if(typeof selector == "string") selector = document.querySelector(selector);
-		return {
-			height: selector.offsetHeight,
-			width: selector.offsetWidth
-		};
-	},
-	scroll: {
+function getBsBreakpoint(){
+	if(window.outerWidth >= 1400) return "xxl";
+	else if(window.outerWidth >= 1200) return "xl";
+	else if(window.outerWidth >= 992) return "lg";
+	else if(window.outerWidth >= 768) return "md";
+	else if(window.outerWidth >= 576) return "sm";
+	else return "xsm";
+}
+
+function isMediaOrientation(ort){
+	if(["L", "l", "Landcape", "landcape"].indexOf(ort) >= 0)
+		return window.outerWidth > window.outerHeight;
+
+	if(["P", "p", "Portrait", "portrait"].indexOf(ort) >= 0)
+		return window.outerHeight > window.outerWidth;
+
+	if(["S", "s", "Square", "square"].indexOf(ort) >= 0)
+		return window.outerHeight == window.outerWidth;
+}
+
+function getElmSize(selector){
+	if(typeof selector == "string") selector = document.querySelector(selector);
+	return {
+		height: selector.offsetHeight,
+		width: selector.offsetWidth
+	};
+}
+
+function createScrollWatcher(){
+	let scrollWatcher = {
 		key: null,
-		setKey: () => { App.scroll.key = window.scrollY; },
-		isScrollUp: () => (window.scrollY < App.scroll.key),
-		isScrollDown: () => (window.scrollY > App.scroll.key)
-	}
-};
+		setKey: () => { this.scroll.key = window.scrollY; },
+		isScrollUp: () => (window.scrollY < this.scroll.key),
+		isScrollDown: () => (window.scrollY > this.scroll.key)
+	};
 
-const createElm = obj => {
-	if(!obj.hasOwnProperty("tag")) return null;
+	scrollWatcher.setKey();
+	return scrollWatcher
+}
 
-	let elm = document.createElement(obj.tag);
-	if(obj.hasOwnProperty("class")){
-		if(Array.isArray(obj.class)) obj.class.forEach(className => elm.classList.add(className));
-		else if(typeof obj.class == "string") elm.classList.add(obj.class);
-	}
-	if(obj.hasOwnProperty("id")) elm.id = obj.id;
-	if(obj.hasOwnProperty("attr")) Object.entries(obj.attr).forEach(attr => elm.setAttribute(attr[0], attr[1]));
-	if(obj.hasOwnProperty("text")) elm.innerText = obj.text;
-	if(obj.hasOwnProperty("child")){
-		obj.child.forEach(child => elm.appendChild(createElm(child)));
-	}
+function createImg(target){
+	let img = new Image;
+	img.src = target.getAttribute("data-target");
 
-	return elm;
-};
+	[...target.attributes].filter(attr => (attr.nodeName!="src" && attr.nodeName!="src")).forEach(attr => img.setAttribute(attr.nodeName, attr.nodeValue));
+	
+	return img;
+}
+
+function loadImg(target, order = false){
+	const passLoadToNextTarget = targetList => {
+		if(targetList.length > 1){
+			targetList.shift();
+			loadImg(targetList, true);
+		}
+	};
+
+	if(!Array.isArray(target)){
+
+		let img = createImg(target);
+		img.onload = function(){
+			if(target.hasAttribute("data-loaded")) img.setAttribute("data-loaded", true);
+			target.parentNode.replaceChild(img, target);
+		};
+
+	}else if(target.length > 0 && order === true){
+
+		let img = createImg(target[0]);
+		img.onload = function(){
+			if(target[0].hasAttribute("data-loaded")) img.setAttribute("data-loaded", true);
+			target[0].parentNode.replaceChild(img, target[0]);
+			passLoadToNextTarget(target);
+		};
+		img.onerror = function(){
+			passLoadToNextTarget(target);
+		}
+
+	}else if(target.length > 0){
+		target.forEach(t => {
+
+			let img = createImg(t);
+			img.onload = function(){
+				if(t.hasAttribute("data-loaded")) img.setAttribute("data-loaded", true);
+				t.parentNode.replaceChild(img, t);
+			};
+
+		});
+	}
+}
+
+function sumHeight(selector){
+	let result = 0;
+	document.querySelectorAll(selector).forEach(elm => {
+		result += elm.offsetHeight;
+	});
+	return result;
+}
+
+function lazyLoadImgAnalyzerForHomePage(){
+	let countPost = post => Math.abs(post - window.pageYOffset);
+	let loadList = [{
+		elm: document.querySelector("header#home img"),
+		post: countPost(0)
+	}];
+	document.querySelectorAll("#about #gallery img").forEach(img => loadList.push({
+		elm: img,
+		post: countPost(sumHeight("header#home"))
+	}));
+	document.querySelectorAll("#products img").forEach(img => loadList.push({
+		elm: img,
+		post: countPost(sumHeight("header#home, section#about"))
+	}));
+	document.querySelectorAll("#team img").forEach(img => loadList.push({
+		elm: img,
+		post: countPost(sumHeight("header#home, section#about, section#products"))
+	}));		
+
+	return bubbleSortAlgorithm(loadList, item => item.post).map(item => item.elm);
+}
+
+function bubbleSortAlgorithm(data, getItem = null){
+	if(!Array.isArray(data)){
+		console.log("The Quick Sort Algorithm need data as Array");
+		return;
+	}
+	if(getItem === null) getItem = item => item;
+
+	for(let i = 0; i < data.length; i++){
+		for(let j = data.length - 1; j > i; j--){
+			if(getItem(data[j]) < getItem(data[j - 1])){
+				let dummy = data[j];
+				data[j] = data[j - 1];
+				data[j - 1] = dummy;
+			}
+		}
+	}
+	return data;
+}
