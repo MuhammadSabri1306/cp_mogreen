@@ -1,3 +1,37 @@
+var SectionRegister = {
+	data: [],
+	push: function(name, elm){
+		let top = 0;
+		if(this.data.length > 0) top = this.data[this.data.length - 1].postB;
+		let bottom = top + elm.offsetHeight;
+		this.data.push({
+			name: name,
+			elm: elm,
+			postT: top,
+			postB: bottom
+		});
+	},
+	getItem: function(key){
+		let index = (typeof key == "number") ? key
+			: (typeof key == "string") ? this.data.findIndex(item => item.name == key)
+			: -1;
+		if(index >= 0) return this.data[index];
+	},
+	inRangeItem: function(key){
+		let item = this.getItem(key);
+		if(typeof item == "undefined") return false;
+		else return (window.scrollY >= item.postT && window.scrollY < item.postB);
+	},
+	getItems: function(){
+		return this.data;
+	},
+	getActiveRange: function(){
+		let index = this.data.findIndex(item => (window.scrollY >= item.postT && window.scrollY < item.postB));
+		if(index < 0) return "";
+		else return this.data[index].name;
+	}
+};
+
 var Navbar = {
 	elm : document.getElementById("navbar"),
 	config: {
@@ -9,10 +43,7 @@ var Navbar = {
 		toggle: false
 	}),
 	init: function(){
-		if(this.mustLight()){
-			this.config.isLight = true;
-		}
-
+		if(this.mustLight()) this.config.isLight = true;
 		if(this.config.isLight) this.toLight();
 	},
 	mustLight: function(){
@@ -45,6 +76,15 @@ var Navbar = {
 
 		if(this.elm.classList.contains("shadow-sm"))
 			this.elm.classList.remove("shadow-sm");
+	},
+	setActivedMenu: function(activedTarget){
+		let navLink = Array.from(this.elm.querySelectorAll("a.nav-link"));
+		this.elm.querySelectorAll("a.nav-link").forEach(link => {
+			if(link.getAttribute("data-section-target") == activedTarget && !link.classList.contains("active"))
+				link.classList.add("active");
+			else if(link.getAttribute("data-section-target") != activedTarget && link.classList.contains("active"))
+				link.classList.remove("active");
+		});
 	},
 	toggleCollapse: function(){
 		this.config.isCollapsed = !this.config.isCollapsed;
@@ -134,7 +174,7 @@ function createImg(target){
 	img.src = target.getAttribute("data-target");
 
 	[...target.attributes].filter(attr => (attr.nodeName!="src" && attr.nodeName!="src")).forEach(attr => img.setAttribute(attr.nodeName, attr.nodeValue));
-	
+
 	return img;
 }
 
@@ -179,34 +219,23 @@ function loadImg(target, order = false){
 	}
 }
 
-function sumHeight(selector){
-	let result = 0;
-	document.querySelectorAll(selector).forEach(elm => {
-		result += elm.offsetHeight;
-	});
-	return result;
-}
-
 function lazyLoadImgAnalyzerForHomePage(){
-	let countPost = post => Math.abs(post - window.pageYOffset);
-	let loadList = [{
-		elm: document.querySelector("header#home img"),
-		post: countPost(0)
-	}];
-	document.querySelectorAll("#about #gallery img").forEach(img => loadList.push({
-		elm: img,
-		post: countPost(sumHeight("header#home"))
-	}));
-	document.querySelectorAll("#products img").forEach(img => loadList.push({
-		elm: img,
-		post: countPost(sumHeight("header#home, section#about"))
-	}));
-	document.querySelectorAll("#team img").forEach(img => loadList.push({
-		elm: img,
-		post: countPost(sumHeight("header#home, section#about, section#products"))
-	}));		
+	let sections = [],
+		imgList = [];
+	SectionRegister.getItems().forEach(section => {
+		sections.push({
+			elm: section.elm,
+			node: Math.abs(section.postT - window.scrollY)
+		});
+	});
 
-	return bubbleSortAlgorithm(loadList, item => item.post).map(item => item.elm);
+	sections = bubbleSortAlgorithm(sections, item => item.node);
+	for(s in sections){
+		sections[s].elm.querySelectorAll("img[data-target]").forEach(img => {
+			imgList.push(img);
+		});
+	}
+	return imgList;
 }
 
 function bubbleSortAlgorithm(data, getItem = null){
