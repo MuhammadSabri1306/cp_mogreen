@@ -516,8 +516,8 @@ main, footer {
 	max-height: 100vw;
 }
 
-@media (max-width: 767px) {
-	.img-fluid {
+@media (orientation: portrait) {
+	#about img {
 		height: 80vh;
 		object-fit: cover;
 	}
