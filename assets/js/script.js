@@ -103,28 +103,6 @@ var Navbar = {
 	}
 };
 
-var Hero = {
-	elm: () => document.querySelector("#home .hero > img"),
-	init: function(){
-		let height = this.calcHeight(window.scrollY);
-
-		if(height > 0) this.stylingHeight(`${height}vh`);
-		else this.stylingHeight(0);
-	},
-	calcHeight: function(key){
-		return 100 - (key * 100 / getElmSize("#home").height);
-	},
-	setHeight: function(){
-		let height = this.calcHeight(window.scrollY);
-		if(height > 0) this.stylingHeight(`${height}vh`);
-		else if(height == 0) this.stylingHeight(0);
-	},
-	stylingHeight: function(height){
-		this.elm().style.height = height;
-		this.elm().style.minHeight = 0;
-	}
-};
-
 function bsAlert(parent, type, messege){
 	parent.innerHTML = `<div class="alert alert-${type} alert-dismissible mt-4" role="alert"><small>${messege}</small><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
 }
@@ -167,6 +145,15 @@ function createScrollWatcher(){
 
 	scrollWatcher.setKey();
 	return scrollWatcher
+}
+
+function loadImgHeaderHero(header){
+	let img = new Image();
+	img.src = header.getAttribute("data-target-hero");
+	img.onload = function(){
+		if(header.hasAttribute("data-loaded-hero")) header.setAttribute("data-loaded-hero", true);
+		header.style.backgroundImage = `url("${img.src}")`;
+	};
 }
 
 function createImg(target){

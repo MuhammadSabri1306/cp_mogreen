@@ -107,6 +107,19 @@ section#team .social {
 
 .home-header {
 	position: relative;
+	background-position: 30% 50%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: auto 110%;
+	filter: blur(2vw);
+	-webkit-filter: blur(2vw);
+	transition: background-size .3s, filter .3s, -webkit-filter .3s;
+}
+
+.home-header[data-loaded-hero="true"] {
+	background-size: cover;
+	filter: blur(0);
+	-webkit-filter: blur(0);
 }
 
 .home-header .hero > img {

@@ -9,15 +9,10 @@
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="vendor/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="vendor/aos/aos.min.css" rel="stylesheet">
-    <link href="assets/css/style.css?version=9" rel="stylesheet">
+    <link href="assets/css/style.min.css?version=10" rel="stylesheet">
 </head>
 <body>
-	<header id="home" class="home-header position-relative full-height" data-section-register="true" data-section-name="home">
-		<div class="position-fixed top-0 left-0">
-			<div class="hero position-relative">
-				<img src="assets/img/hero3-sm-compressed.jpg" data-target="assets/img/hero3-compressed.jpg" data-loaded="false" alt="">
-			</div>
-		</div>
+	<header id="home" class="home-header position-relative full-height" data-target-hero="assets/img/hero3-compressed.jpg" data-loaded-hero="false" style="background-image: url('assets/img/hero3-sm-compressed.jpg');">
 		<div class="hero-gradient">&nbsp;</div>
 		<div class="position-absolute w-100 left-0 top-0">
 			<div class="container">
@@ -258,8 +253,8 @@
 							<p class="text-center font-style1 mb-2" data-aos="fade-up">Founder</p>
 							<p class="text-center" data-aos="fade-up">If you want something in your life you've never had, you'll have to do something. You've never done.</p>
 							<p class="text-end text-md-center px-4 pt-4 pt-lg-2">
-								<a href="https://www.linkedin.com/in/hart-mogreen-b04147228/" target="_blank" class="social link-success" data-aos="fade-up" data-aos-offset="200"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
-								<a href="https://www.instagram.com/hart11_/" target="_blank" class="social link-success" data-aos="fade-up"><i class="fab fa-instagram"></i></a>
+								<a href="https://www.linkedin.com/in/hart-mogreen-b04147228/" target="_blank" class="social link-success"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
+								<a href="https://www.instagram.com/hart11_/" target="_blank" class="social link-success"><i class="fab fa-instagram"></i></a>
 							</p>
 						</div></div>
 					</div></div>
@@ -269,11 +264,11 @@
 								<img src="assets/img/user-sm.jpg" class="border" data-target="assets/img/profile_allu-md-compressed.jpg" data-loaded="false" alt="Ahlul Amzari">
 							</div>
 							<h6 class="text-center font-style2 mb-1" data-aos="fade-up">Ahlul Amzari</h6>
-							<p class="text-center font-style1 mb-2" data-aos="fade-up">Media Officer</p>
+							<p class="text-center font-style1 mb-2" data-aos="fade-up">Business Development</p>
 							<p class="text-center" data-aos="fade-up">No lates for successful, keep do it even through the world tries to depress you.</p>
 							<p class="text-end text-md-center px-4 pt-4 pt-lg-2">
-								<a href="https://www.linkedin.com/in/aul-amzari-3466a0221/" target="_blank" class="social link-success" data-aos="fade-up"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
-								<a href="https://www.instagram.com/aulamzarii/" target="_blank" class="social link-success" data-aos="fade-up" data-aos-offset="200"><i class="fab fa-instagram"></i></a>
+								<a href="https://www.linkedin.com/in/aul-amzari-3466a0221/" target="_blank" class="social link-success"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
+								<a href="https://www.instagram.com/aulamzarii/" target="_blank" class="social link-success"><i class="fab fa-instagram"></i></a>
 							</p>
 						</div></div>
 					</div></div>
@@ -286,8 +281,8 @@
 							<p class="text-center font-style1 mb-2" data-aos="fade-up">IT Support</p>
 							<p class="text-center" data-aos="fade-up">Read to be a writer, walk before run. Learn more and do it. Result will refer to the process.</p>
 							<p class="text-end text-md-center px-4 pt-4 pt-lg-2">
-								<a href="https://www.linkedin.com/in/sabri-muhammad-3355061a3/" target="_blank" class="social link-success" data-aos="fade-up"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
-								<a href="https://www.instagram.com/initial.sa/" target="_blank" class="social link-success" data-aos="fade-up" data-aos-offset="200"><i class="fab fa-instagram"></i></a>
+								<a href="https://www.linkedin.com/in/sabri-muhammad-3355061a3/" target="_blank" class="social link-success"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
+								<a href="https://www.instagram.com/initial.sa/" target="_blank" class="social link-success"><i class="fab fa-instagram"></i></a>
 							</p>
 						</div></div>
 					</div></div>
@@ -335,101 +330,7 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="vendor/fontawesome/js/all.min.js"></script>
 <script src="vendor/aos/aos.min.js"></script>
-<script src="assets/js/script.js?version=7"></script>
-<script type="text/javascript">
-
-var scrollWatcher = createScrollWatcher();
-Navbar.init();
-Hero.init();
-
-const navbarToggler = document.querySelector("#navbarToggler")
-const contactForm = document.forms["contact"];
-const modalContact = document.querySelector("#modalContact");
-const alertContact = document.querySelector("#alertContact");
-const galleryItem = document.querySelectorAll("#about .gallery-item");
-const sections =  document.querySelectorAll("[data-section-register]");
-const modalPlantation = document.getElementById("modalPlantation");
-
-Array.from(sections).forEach(section => {
-	SectionRegister.push(section.getAttribute("data-section-name"), section);
-});
-
-let activeSection = SectionRegister.getActiveRange();
-Navbar.setActivedMenu(activeSection);
-
-const imgList = lazyLoadImgAnalyzerForHomePage();
-loadImg(imgList, true);
-
-if(getBsBreakpoint() == "sm" || getBsBreakpoint() == "xsm"){
-	galleryItem.forEach(item => item.removeAttribute("data-aos"));
-}
-
-/*if(App.orientation.isPortrait() === true){
-	document.querySelector("#about .section-hero").removeAttribute("data-aos-offset");
-}
-document.addEventListener("DOMContentLoaded", function(){});*/
-
-modalPlantation.addEventListener("show.bs.modal", function(event){
-	let plantationImg = modalPlantation.querySelectorAll("img[data-loaded='false']");
-	loadImg([...plantationImg], true);
-});
-
-navbarToggler.addEventListener("click", () => {
-	Navbar.toggleCollapse();
-});
-
-contactForm.btnSubmit.addEventListener("click", () => {
-
-	if(!contactForm.checkValidity()){
-		contactForm.classList.add("was-validated");
-		return;
-	}
-
-	let formData = new FormData(contactForm);
-	contactForm.classList.remove("was-validated");
-	let success = false;
-
-	if(success){
-		console.log(formData);
-		bootstrap.Modal.getInstance(modalContact).hide();
-		contactForm.messege.value = "";
-	}else{
-		bsAlert(alertContact, "danger", "<b>Failed</b> to send your messeges! Try other option, please.");
-		document.querySelector("#modalContact .modal-body").scrollTop = alertContact.offsetTop;
-	}
-
-});
-
-contactForm.btnReset.addEventListener("click", () => {
-
-	contactForm.reset();
-	contactForm.classList.remove("was-validated");
-
-});
-
-window.onscroll = () => {
-
-	Hero.setHeight();
-	Navbar.scrolledStyle();
-
-	scrollWatcher.setKey();
-
-	if(activeSection != SectionRegister.getActiveRange()){
-		activeSection = SectionRegister.getActiveRange();
-		Navbar.setActivedMenu(activeSection);
-	}
-};
-
-var headerHeroTimer = setInterval(headerHeroChecker, 500);
-function headerHeroChecker(){
-	if(!document.querySelector("#home .hero > img").getAttribute("data-loaded") === "true"){
-		clearInterval(headerHeroTimer);
-		Hero.init();
-	}
-}
-
-AOS.init();
-
-</script>
+<script src="assets/js/script.min.js?version=8"></script>
+<script type="text/javascript">var scrollWatcher=createScrollWatcher();Navbar.init();const header=document.querySelector("header#home"),navbarToggler=document.querySelector("#navbarToggler"),contactForm=document.forms.contact,modalContact=document.querySelector("#modalContact"),alertContact=document.querySelector("#alertContact"),galleryItem=document.querySelectorAll("#about .gallery-item"),sections=document.querySelectorAll("[data-section-register]"),modalPlantation=document.getElementById("modalPlantation");Array.from(sections).forEach(e=>{SectionRegister.push(e.getAttribute("data-section-name"),e)}),loadImgHeaderHero(header);let activeSection=SectionRegister.getActiveRange();Navbar.setActivedMenu(activeSection);const imgList=lazyLoadImgAnalyzerForHomePage();loadImg(imgList,!0),"sm"!=getBsBreakpoint()&&"xsm"!=getBsBreakpoint()||galleryItem.forEach(e=>e.removeAttribute("data-aos")),modalPlantation.addEventListener("show.bs.modal",function(e){let t=modalPlantation.querySelectorAll("img[data-loaded='false']");loadImg([...t],!0)}),navbarToggler.addEventListener("click",()=>{Navbar.toggleCollapse()}),contactForm.btnSubmit.addEventListener("click",()=>{if(!contactForm.checkValidity())return void contactForm.classList.add("was-validated");new FormData(contactForm);contactForm.classList.remove("was-validated");bsAlert(alertContact,"danger","<b>Failed</b> to send your messeges! Try other option, please."),document.querySelector("#modalContact .modal-body").scrollTop=alertContact.offsetTop}),contactForm.btnReset.addEventListener("click",()=>{contactForm.reset(),contactForm.classList.remove("was-validated")}),window.onscroll=(()=>{Navbar.scrolledStyle(),scrollWatcher.setKey(),activeSection!=SectionRegister.getActiveRange()&&(activeSection=SectionRegister.getActiveRange(),Navbar.setActivedMenu(activeSection))}),AOS.init();</script>
 </body>
 </html>
