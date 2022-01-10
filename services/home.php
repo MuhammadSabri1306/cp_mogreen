@@ -332,5 +332,44 @@
 <script src="vendor/aos/aos.min.js"></script>
 <script src="assets/js/script.min.js?version=8"></script>
 <script type="text/javascript">var scrollWatcher=createScrollWatcher();Navbar.init();const header=document.querySelector("header#home"),navbarToggler=document.querySelector("#navbarToggler"),contactForm=document.forms.contact,modalContact=document.querySelector("#modalContact"),alertContact=document.querySelector("#alertContact"),galleryItem=document.querySelectorAll("#about .gallery-item"),sections=document.querySelectorAll("[data-section-register]"),modalPlantation=document.getElementById("modalPlantation");Array.from(sections).forEach(e=>{SectionRegister.push(e.getAttribute("data-section-name"),e)}),loadImgHeaderHero(header);let activeSection=SectionRegister.getActiveRange();Navbar.setActivedMenu(activeSection);const imgList=lazyLoadImgAnalyzerForHomePage();loadImg(imgList,!0),"sm"!=getBsBreakpoint()&&"xsm"!=getBsBreakpoint()||galleryItem.forEach(e=>e.removeAttribute("data-aos")),modalPlantation.addEventListener("show.bs.modal",function(e){let t=modalPlantation.querySelectorAll("img[data-loaded='false']");loadImg([...t],!0)}),navbarToggler.addEventListener("click",()=>{Navbar.toggleCollapse()}),contactForm.btnSubmit.addEventListener("click",()=>{if(!contactForm.checkValidity())return void contactForm.classList.add("was-validated");new FormData(contactForm);contactForm.classList.remove("was-validated");bsAlert(alertContact,"danger","<b>Failed</b> to send your messeges! Try other option, please."),document.querySelector("#modalContact .modal-body").scrollTop=alertContact.offsetTop}),contactForm.btnReset.addEventListener("click",()=>{contactForm.reset(),contactForm.classList.remove("was-validated")}),window.onscroll=(()=>{Navbar.scrolledStyle(),scrollWatcher.setKey(),activeSection!=SectionRegister.getActiveRange()&&(activeSection=SectionRegister.getActiveRange(),Navbar.setActivedMenu(activeSection))}),AOS.init();</script>
+<script type="text/javascript">
+
+contactForm.btnSubmit.addEventListener("click", () => {
+
+	if(!contactForm.checkValidity()){
+		contactForm.classList.add("was-validated");
+		return;
+	}
+
+	let formData = new FormData(contactForm);
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'http://localhost/mogreen/mail', true);
+	xhr.onload = function(){
+		let response = this.responseText;
+		try{
+
+			response = JSON.parse(response);
+			console.log(response);
+
+		} catch(e){
+			console.log(e.messege);
+		}
+	};
+	xhr.send(formData);
+	contactForm.classList.remove("was-validated");
+	let success = false;
+
+	if(success){
+		console.log(formData);
+		bootstrap.Modal.getInstance(modalContact).hide();
+		contactForm.messege.value = "";
+	}else{
+		bsAlert(alertContact, "danger", "<b>Failed</b> to send your messeges! Try other option, please.");
+		document.querySelector("#modalContact .modal-body").scrollTop = alertContact.offsetTop;
+	}
+
+});
+
+</script>
 </body>
 </html>
