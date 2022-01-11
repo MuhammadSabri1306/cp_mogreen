@@ -45,11 +45,24 @@ contactForm.btnSubmit.addEventListener("click", () => {
 	}
 
 	let formData = new FormData(contactForm);
-	contactForm.classList.remove("was-validated");
 	let success = false;
+	let xhr = new XMLHttpRequest();
+
+	xhr.open('POST', 'http://localhost/mogreen/mail', true);
+	xhr.onload = function(){
+		let response = this.responseText;
+		try{
+			response = JSON.parse(response);
+			success = response.status;
+
+		} catch(e){
+			console.log(e.messege);
+		}
+	};
+	xhr.send(formData);
+	contactForm.classList.remove("was-validated");
 
 	if(success){
-		console.log(formData);
 		bootstrap.Modal.getInstance(modalContact).hide();
 		contactForm.messege.value = "";
 	}else{
