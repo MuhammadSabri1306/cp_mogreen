@@ -1,7 +1,7 @@
 <?php
 
 $response = ['status' => false];
-if(!isset($_POST['mail'])){
+if(isset($_POST['mail'])){
 	
 	$mail = $this->getLibrary('PHPMailer');
 	$mail->PluginDir = __DIR__.'/../libraries/';
