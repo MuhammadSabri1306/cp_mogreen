@@ -8,7 +8,7 @@ if(isset($_POST['mail'])){
 	$mail->IsSMTP();
 	$mail->SMTPSecure = 'ssl'; 
 	$mail->Host = MAIL_HOST; //host masing2 provider email
-	$mail->SMTPDebug = 2;
+	$mail->SMTPDebug = 0;
 	$mail->Port = 465;
 	$mail->SMTPAuth = true;
 	$mail->Username = MAIL_USER; //user email
@@ -25,8 +25,6 @@ if(isset($_POST['mail'])){
 	$mail->MsgHTML($body);
 	if($mail->Send()){
 		$response = ['status' => true];
-	}else{
-		$response = ['status' => false];
 	}
 }
 
