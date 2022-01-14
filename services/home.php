@@ -3,9 +3,23 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mogreen</title>
+	<title>Mogreen | Get vegetable products</title>
+	<meta name="description" content="We provide vegetable products directly from farmers hands">
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Mogreen | Get vegetable products" />
+	<meta property="og:description" content="We provide vegetable products directly from farmers hands" />
+	<meta property="og:url" content="https://www.globalmogreen.com/" />
+	<meta property="og:image" content="https://www.globalmogreen.com/assets/img/gallery4-lg-compressed.jpg" />
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-216839247-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
+		gtag('config', 'UA-216839247-1');
+	</script>
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="vendor/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="vendor/aos/aos.min.css" rel="stylesheet">
@@ -68,12 +82,12 @@
 				<div class="container-fluid">
 					<p class="text-center text-muted">We would like to work together. Let's get in touch.</p>
 					<div class="d-flex justify-content-center align-items-center">
-						<a href="mailto:cv.mogreen@gmail.com" target="_blank" class="link-success m-2"><i class="far fa-envelope fa-2x"></i></a>
-						<a href="tel:+6285298368811" target="_blank" class="link-success m-2" style="font-size:1.5em"><i class="fas fa-phone"></i></a>
-						<a href="https://wa.me/6285298368811" target="_blank" class="link-success m-2"><i class="fab fa-whatsapp fa-2x"></i></a>
-						<a href="javascript:void(1)" class="link-success m-2"><i class="fab fa-linkedin-in fa-2x"></i></a>
-						<a href="https://www.instagram.com/mogreen.id/" target="_blank" class="link-success m-2"><i class="fab fa-instagram fa-2x"></i></a>
-						<a href="javascript:void(2)" class="link-success m-2"><i class="fab fa-facebook-f fa-2x"></i></a>
+						<a href="<?=$social['email']['url']?>" target="_blank" class="link-success m-2"><i class="far fa-envelope fa-2x"></i></a>
+						<a href="<?=$social['telp']['url']?>" target="_blank" class="link-success m-2" style="font-size:1.5em"><i class="fas fa-phone"></i></a>
+						<a href="<?=$social['whatsapp']['url']?>" target="_blank" class="link-success m-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+						<a href="<?=$social['linkedin']['url']?>" target="_blank" class="link-success m-2"><i class="fab fa-linkedin-in fa-2x"></i></a>
+						<a href="<?=$social['instagram']['url']?>" target="_blank" class="link-success m-2"><i class="fab fa-instagram fa-2x"></i></a>
+						<a href="<?=$social['facebook']['url']?>" target="_blank" class="link-success m-2"><i class="fab fa-facebook-f fa-2x"></i></a>
 					</div>
 					<div id="alertContact"></div>
 					<form name="contact" class="py-4" class="needs-validation">
@@ -244,48 +258,22 @@
 			<div class="container">
 				<h3 class="text-center mb-4 mb-lg-3" data-aos="fade-up">Our Teams</h3>
 				<div class="row justify-content-center">
-					<div class="col-10 col-md-5 col-lg-4"><div class="pb-3 px-lg-5">
+<?php for($i=0; $i<count($teams); $i++){?>
+					<div class="col-10 col-md-5 col-lg-4"><div class="pb-3 <?php if($i>1){echo 'pt-md-2 pt-lg-0 ';}?>px-lg-5">
 						<div class="card rounded-0"><div class="card-body">
 							<div class="d-flex justify-content-center py-4">
-								<img src="assets/img/user-sm.jpg" class="border" data-target="assets/img/profile_harto-md-compressed.jpg" data-loaded="false" alt="Sumiarso Suharto">
+								<img src="assets/img/user-sm.jpg" class="border" data-target="<?=$teams[$i]['img']?>" data-loaded="false" alt="<?=$teams[$i]['name']?>">
 							</div>
-							<h6 class="text-center font-style2 mb-1" data-aos="fade-up">Sumiarso Suharto</h6>
-							<p class="text-center font-style1 mb-2" data-aos="fade-up">Founder</p>
-							<p class="text-center" data-aos="fade-up">If you want something in your life you've never had, you'll have to do something. You've never done.</p>
+							<h6 class="text-center font-style2 mb-1" data-aos="fade-up"><?=$teams[$i]['name']?></h6>
+							<p class="text-center font-style1 mb-2" data-aos="fade-up"><?=$teams[$i]['post']?></p>
+							<p class="text-center" data-aos="fade-up"><?=$teams[$i]['says']?></p>
 							<p class="text-end text-md-center px-4 pt-4 pt-lg-2">
-								<a href="https://www.linkedin.com/in/hart-mogreen-b04147228/" target="_blank" class="social link-success"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
-								<a href="https://www.instagram.com/hart11_/" target="_blank" class="social link-success"><i class="fab fa-instagram"></i></a>
+								<a href="<?=$teams[$i]['social_linkedin']?>" target="_blank" class="social link-success"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
+								<a href="<?=$teams[$i]['social_instagram']?>" target="_blank" class="social link-success"><i class="fab fa-instagram"></i></a>
 							</p>
 						</div></div>
 					</div></div>
-					<div class="col-10 col-md-5 col-lg-4"><div class="pb-3 px-lg-5">
-						<div class="card rounded-0"><div class="card-body">
-							<div class="d-flex justify-content-center py-4">
-								<img src="assets/img/user-sm.jpg" class="border" data-target="assets/img/profile_allu-md-compressed.jpg" data-loaded="false" alt="Ahlul Amzari">
-							</div>
-							<h6 class="text-center font-style2 mb-1" data-aos="fade-up">Ahlul Amzari</h6>
-							<p class="text-center font-style1 mb-2" data-aos="fade-up">Business Development</p>
-							<p class="text-center" data-aos="fade-up">No lates for successful, keep do it even through the world tries to depress you.</p>
-							<p class="text-end text-md-center px-4 pt-4 pt-lg-2">
-								<a href="https://www.linkedin.com/in/aul-amzari-3466a0221/" target="_blank" class="social link-success"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
-								<a href="https://www.instagram.com/aulamzarii/" target="_blank" class="social link-success"><i class="fab fa-instagram"></i></a>
-							</p>
-						</div></div>
-					</div></div>
-					<div class="col-10 col-md-5 col-lg-4"><div class="pb-3 pt-md-2 pt-lg-0 px-lg-5">
-						<div class="card rounded-0"><div class="card-body">
-							<div class="d-flex justify-content-center py-4">
-								<img src="assets/img/user-sm.jpg" class="border" data-target="assets/img/profile_sabri-md-compressed.jpg" data-loaded="false" alt="Muhammad Sabri">
-							</div>
-							<h6 class="text-center font-style2 mb-1" data-aos="fade-up">Muhammad Sabri</h6>
-							<p class="text-center font-style1 mb-2" data-aos="fade-up">IT Support</p>
-							<p class="text-center" data-aos="fade-up">Read to be a writer, walk before run. Learn more and do it. Result will refer to the process.</p>
-							<p class="text-end text-md-center px-4 pt-4 pt-lg-2">
-								<a href="https://www.linkedin.com/in/sabri-muhammad-3355061a3/" target="_blank" class="social link-success"><i class="fab fa-linkedin-in me-3 me-lg-1"></i></a>
-								<a href="https://www.instagram.com/initial.sa/" target="_blank" class="social link-success"><i class="fab fa-instagram"></i></a>
-							</p>
-						</div></div>
-					</div></div>
+<?php }?>
 				</div>
 			</div>
 		</section>
@@ -298,30 +286,30 @@
 					<p class="font-style3" data-aos="fade-up">on our social media</p>
 				</div>
 				<div id="social" class="d-flex justify-content-center justify-content-md-end">
-					<a class="social position-relative" href="mailto:cv.mogreen@gmail.com" target="_blank" data-aos="fade-up">
+					<a class="social position-relative" href="<?=$social['linkedin']['url']?>" target="_blank" data-aos="fade-up">
 						<div class="icon">
 							<i class="fab fa-linkedin"></i>
 						</div>
-						<div class="title bg-primary text-white"><b>cv.mogreen@gmail.com</b></div>
+						<div class="title bg-primary text-white"><b><?=$social['linkedin']['title']?></b></div>
 					</a>
-					<a class="social position-relative" href="https://www.instagram.com/mogreen.id/" target="_blank" data-aos="fade-up" data-aos-offset="150">
+					<a class="social position-relative" href="<?=$social['instagram']['url']?>" target="_blank" data-aos="fade-up" data-aos-offset="150">
 						<div class="icon">
 							<i class="fab fa-instagram"></i>
 						</div>
-						<div class="title bg-primary text-white"><b>@mogreen.id</b></div>
+						<div class="title bg-primary text-white"><b><?=$social['instagram']['title']?></b></div>
 					</a>
-					<a class="social position-relative" href="javascript:void(0)" title="mogreen.id" data-aos="fade-up" data-aos-offset="200">
+					<a class="social position-relative" href="<?=$social['facebook']['url']?>" data-aos="fade-up" data-aos-offset="200">
 						<div class="icon">
 							<i class="fab fa-facebook-square"></i>
 						</div>
-						<div class="title bg-primary text-white"><b>Not available</b></div>
+						<div class="title bg-primary text-white"><b><?=$social['facebook']['title']?></b></div>
 					</a>
 				</div>
 			</div>
 			<div class="p-4">
 				<p class="font-style1">CV. MOGREEN INDONESIA</p>
-				<p>Jl. Perintis Kemerdekaan Km. 9, Tamalanrea<br>Makassar, 90245 - Indonesia</p>
-				<p><i class="fas fa-phone"></i> +62 852 9836 8811<br><i class="fas fa-envelope"></i> cv.mogreen@gmail.com</p>
+				<p><?=$social['address']['title']?></p>
+				<p><i class="fas fa-phone"></i> <?=$social['telp']['title']?><br><i class="fas fa-envelope"></i> <?=$social['email']['title']?></p>
 			</div>
 		</div>
 		<p class="text-muted text-center small mb-0 pt-5 pb-3"><b>Copyright <i class="far fa-copyright"></i> 2021 MOGREEN<span class="d-none d-md-inline">. All rights reserved</span></b></p>

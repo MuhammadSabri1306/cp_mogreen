@@ -12,4 +12,4 @@ if(!empty($url)){
 	}
 }
 
-$app->getService($service);
+$app->run($service);

@@ -6,6 +6,15 @@ class App
 {
 	public $services = ['home', 'mail'];
 
+	function run($service){
+		if(!in_array($service, $this->services)){
+			echo('ERROR!');
+			var_dump($service);
+			return false;
+		}
+		$this->$service();
+	}
+
 	function parseUrl(){
 		$url = [];
 		if(isset($_GET['url'])){
@@ -21,11 +30,14 @@ class App
 		return new $library;
 	}
 
-	function getService($service, $priority = true){
-		if(!in_array($service, $this->services)){
-			echo('ERROR!');
-			var_dump($service);
-			return false;
+	function getModel($model){
+		require __DIR__."/model/$model.php";
+		return $data;
+	}
+
+	function getService($service, $model = array(), $priority = true){
+		if(!empty($model)){
+			extract($model);
 		}
 
 		if($priority){
@@ -36,7 +48,11 @@ class App
 	}
 
 	function home(){
-		$this->getService('home');
+		$data = array(
+			'teams' => $this->getModel('teams'),
+			'social' => $this->getModel('social')
+		);
+		$this->getService('home', $data);
 	}
 
 	function mail(){
